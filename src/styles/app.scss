@@ -1,0 +1,19 @@
+@import "base/variables";
+@import "../components/nav";
+
+$space-large: 3.5rem;
+$title-color: blue;;
+
+h2 {
+  color: $title-color;
+}
+
+.page-title {
+  color: $title-color;
+  margin-top: $space-large;
+  margin-bottom: 2.5rem;
+}
+
+input[type=search] {
+  box-shadow: none;
+}
