@@ -22,6 +22,10 @@ module.exports = {
   watch: true,
   resolve: {
     root: __dirname,
+    modulesDirectories: [
+      'node_modules',
+      './src/components'
+    ],
 
     extensions: ['', '.js', '.jsx']
   },

@@ -15,7 +15,8 @@ require('style!css!sass!./styles/app.scss');
 
 //Import Router
 var Routes = require('./routes');
-var Main = require('./components/Main.jsx');
+//var Main = require('./components/Main.jsx');
+var TodoApp = require('./components/TodoApp.jsx');
 
 var ObjOne = {
   name: 'Andrew',
@@ -49,6 +50,6 @@ ReactDOM.render(
 */
 
 ReactDOM.render(
-  Routes,
+  <TodoApp />,
   document.getElementById('app')
 );
