@@ -1,13 +1,36 @@
 var React = require('react');
 
+var TodoList = require('./TodoList.jsx');
 // var Nav = require('./Nav.jsx');
 
 // Use createClass as it is the top component to maintain state
 var TodoApp = React.createClass({
+
+  getInitialState: function(){
+    return {
+      todos: [
+        {
+          id: 1,
+          text: 'walk the dog'
+        },
+        {
+          id: 2,
+          text: 'clean yard'
+        },
+        {
+          id: 3,
+          text: 'eat milo'
+        }
+      ]
+    };
+  },
   render: function(){
+
+    var {todos} = this.state;
+
     return (
       <div>
-        <h2>TodoApp.jsx</h2>
+        <TodoList todos={todos} />
       </div>
     );
   }
