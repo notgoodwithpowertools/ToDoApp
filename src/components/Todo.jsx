@@ -8,7 +8,7 @@ var Todo = React.createClass({
 
     return (
       <div>
-       <p>Todo {id}: {text}</p>
+       <p>Todo {id}. {text}</p>
       </div>
 
     )

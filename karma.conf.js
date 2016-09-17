@@ -5,7 +5,7 @@ module.exports = function (config) {
     browsers:['Firefox'],
     singleRun: true,
     frameworks: ['mocha'],
-    files: ['./tests/**/*.test.jsx'],
+      files: ['node_modules/jquery/dist/jquery.min.js','./tests/**/*.test.jsx'],
     preprocessors: {
       './tests/**/*.test.jsx': ['webpack', 'sourcemap']
     },
