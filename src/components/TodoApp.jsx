@@ -4,12 +4,15 @@ var TodoList = require('./TodoList.jsx');
 // var Nav = require('./Nav.jsx')
 
 var AddTodo = require('./AddTodo.jsx');
+var TodoSearch = require('./TodoSearch.jsx')
 
 // Use createClass as it is the top component to maintain state
 var TodoApp = React.createClass({
 
   getInitialState: function(){
     return {
+      showCompleted: false,
+      searchText: '',
       todos: [
         {
           id: 1,
@@ -31,12 +34,23 @@ var TodoApp = React.createClass({
     alert('New to do' + text);
   },
 
+  handleSearch: function(showCompleted, searchText) {
+    this.setState({
+      showCompleted: showCompleted,
+      searchText: searchText.toLowerCase()
+    })
+    console.log("Handling search...");
+
+
+  },
+
   render: function(){
 
     var {todos} = this.state;
 
     return (
       <div>
+        <TodoSearch onSearch={this.handleSearch} />
         <TodoList todos={todos} />
         <AddTodo onAddTodo={this.handleAddTodo} />
       </div>
