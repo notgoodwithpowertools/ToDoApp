@@ -4,7 +4,9 @@ var TodoList = require('./TodoList.jsx');
 // var Nav = require('./Nav.jsx')
 
 var AddTodo = require('./AddTodo.jsx');
-var TodoSearch = require('./TodoSearch.jsx')
+var TodoSearch = require('./TodoSearch.jsx');
+
+var uuid = require('node-uuid');
 
 // Use createClass as it is the top component to maintain state
 var TodoApp = React.createClass({
@@ -31,7 +33,15 @@ var TodoApp = React.createClass({
   },
 
   handleAddTodo: function(text) {
-    alert('New to do' + text);
+    //alert('New to do' + text);
+    this.setState({
+      todos: [
+        ...this.state.todos, {
+          id: uuid(),
+          text: text
+        }
+      ]
+    });
   },
 
   handleSearch: function(showCompleted, searchText) {

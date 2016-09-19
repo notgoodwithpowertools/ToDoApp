@@ -33,6 +33,7 @@
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
     "node-sass": "^3.8.0",
+    "node-uuid": "^1.4.7",
     "react": "^15.1.0",
     "react-addons-test-utils": "^15.1.0",
     "react-dom": "^15.1.0",
