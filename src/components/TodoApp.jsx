@@ -1,7 +1,9 @@
 var React = require('react');
 
 var TodoList = require('./TodoList.jsx');
-// var Nav = require('./Nav.jsx');
+// var Nav = require('./Nav.jsx')
+
+var AddTodo = require('./AddTodo.jsx');
 
 // Use createClass as it is the top component to maintain state
 var TodoApp = React.createClass({
@@ -24,6 +26,11 @@ var TodoApp = React.createClass({
       ]
     };
   },
+
+  handleAddTodo: function(text) {
+    alert('New to do' + text);
+  },
+
   render: function(){
 
     var {todos} = this.state;
@@ -31,6 +38,7 @@ var TodoApp = React.createClass({
     return (
       <div>
         <TodoList todos={todos} />
+        <AddTodo onAddTodo={this.handleAddTodo} />
       </div>
     );
   }
