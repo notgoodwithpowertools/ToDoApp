@@ -5,6 +5,7 @@ var TodoList = require('./TodoList.jsx');
 
 var AddTodo = require('./AddTodo.jsx');
 var TodoSearch = require('./TodoSearch.jsx');
+var TodoAPI = require('../api/TodoAPI.jsx');
 
 var uuid = require('node-uuid');
 
@@ -15,7 +16,8 @@ var TodoApp = React.createClass({
     return {
       showCompleted: false,
       searchText: '',
-      todos: [
+
+      /*todos: [
         {
           id: 1,
           text: 'walk the dog',
@@ -31,8 +33,14 @@ var TodoApp = React.createClass({
           text: 'eat milo',
           completed: true
         }
-      ]
+      ] */
+      //Get the data from the API call
+      todos: TodoAPI.getTodos()
     };
+  },
+
+  componentDidUpdate: function(){
+    TodoAPI.setTodos(this.state.todos);
   },
 
   handleAddTodo: function(text) {
