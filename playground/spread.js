@@ -44,3 +44,14 @@ function greet (name, age) {
 
 greet(...person);
 greet(...person2);
+
+
+function hello(name) {
+  console.log("hello " + name);
+}
+console.log("Executing function hello...");
+hello('Andrew');
+
+var helloArrow = (name, lastname) => "Hello Arrow..." + name + " " + lastname;
+
+console.log("Greeting ..." + helloArrow('andrew', 'assauw'));
