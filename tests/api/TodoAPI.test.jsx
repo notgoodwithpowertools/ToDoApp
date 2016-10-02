@@ -15,7 +15,7 @@ describe('TodoAPI', () => {
     });
 
     it('should set valid todos array', () => {
-      var todos = [{id: 23, test: 'test files', completed: false}];
+      var todos = [{id: 23, text: 'test files', completed: false}];
       TodoAPI.setTodos(todos);
 
       var actualTodos = JSON.parse(localStorage.getItem('todos'));
@@ -41,7 +41,7 @@ describe('TodoAPI', () => {
     });
 
     it('should return todos if valid array in localStorage data', () => {
-      var todos = [{id: 23, test: 'test files', completed: false}];
+      var todos = [{id: 23, text: 'test files', completed: false}];
       localStorage.setItem('todos', JSON.stringify(todos));
       var actualTodos = TodoAPI.getTodos();
       expect(actualTodos).toEqual(todos);
