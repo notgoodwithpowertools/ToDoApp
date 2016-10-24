@@ -1,6 +1,8 @@
 var React = require('react');
 
-var TodoList = require('./TodoList.jsx');
+//var TodoList = require('./TodoList.jsx');
+import TodoList from './TodoList.jsx';
+
 // var Nav = require('./Nav.jsx')
 
 var AddTodo = require('./AddTodo.jsx');
@@ -59,7 +61,8 @@ var TodoApp = React.createClass({
       ]
     });
   },
-
+  /*
+  // refactored to use Redux dispatch direct from todo
   handleToggle: function(id){
 
     var updatedTodos = this.state.todos.map((todo) => {
@@ -72,7 +75,7 @@ var TodoApp = React.createClass({
     //alert(id);
     this.setState({todos: updatedTodos});
   },
-
+  */
   handleSearch: function(showCompleted, searchText) {
     this.setState({
       showCompleted: showCompleted,
@@ -88,6 +91,7 @@ var TodoApp = React.createClass({
     var {todos, showCompleted, searchText} = this.state;
     var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
+    /* Refactor for react-redux
     return (
       <div>
         <h1 className="page-title">Todo App</h1>
@@ -102,6 +106,22 @@ var TodoApp = React.createClass({
         </div>
       </div>
     );
+    */
+    return (
+      <div>
+        <h1 className="page-title">Todo App</h1>
+        <div className="row">
+          <div className="column small-centered small-11 medium-6 large-5">
+            <div className="container">
+              <TodoSearch onSearch={this.handleSearch} />
+              <TodoList/>
+              <AddTodo onAddTodo={this.handleAddTodo} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
   }
 });
 /*

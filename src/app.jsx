@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var {Provider} = require('react-redux');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 //Load foundation
@@ -17,6 +18,10 @@ require('style!css!sass!./styles/app.scss');
 var Routes = require('./routes');
 //var Main = require('./components/Main.jsx');
 var TodoApp = require('./components/TodoApp.jsx');
+
+
+var actions = require('./actions/actions.jsx');
+var store = require('./store/configureStore.jsx').configure();
 
 var ObjOne = {
   name: 'Andrew',
@@ -49,7 +54,33 @@ ReactDOM.render(
 );
 */
 
+
+
+store.subscribe(() => {
+  console.log('New state', store.getState());
+});
+
+console.log('++++++++++++++++');
+store.dispatch(actions.addTodo('walk the rabbits'));
+
+
+console.log('****************');
+store.dispatch(actions.setSearchText('rabbits'));
+console.log('================');
+store.dispatch(actions.toggleShowCompleted());
+
+
+/*
 ReactDOM.render(
   <TodoApp />,
+  document.getElementById('app')
+);
+*/
+// refactor using Provider - all children can access store
+ReactDOM.render(
+  <Provider store={store}>
+    <TodoApp />
+  </Provider>,
+
   document.getElementById('app')
 );

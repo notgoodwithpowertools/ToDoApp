@@ -3,6 +3,11 @@ var ReactDOM = require('react-dom');
 var expect = require('expect');
 var $ = require('jquery');
 var TestUtils = require('react-addons-test-utils');
+var {Provider} = require('react-redux');
+
+var configureStore = require('../../src/store/configureStore.jsx');
+//var TodoList = require('../../src/components/TodoList.jsx');
+import TodoList from '../../src/components/TodoList.jsx'
 
 //Compnenents
 var TodoApp = require('../../src/components/TodoApp.jsx');
@@ -13,6 +18,26 @@ describe('TodoApp', () => {
 
   });
 
+  it('should render TodoList', () => {
+    var store = configureStore.configure();
+    var provider = TestUtils.renderIntoDocument(
+      <Provider store={store} >
+        <TodoApp />
+      </Provider>
+    );
+
+    var todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
+    var todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
+
+    expect(todoList.length).toEqual(1);
+
+  });
+
+
+
+  // With Redux the function is not passed down. An action is called from the
+  // components so we can remove the handleToggle function
+  /*
   it('should add todo to the todos state on handleAddTodo', () => {
     var todoText = 'banana';
     var todoApp = TestUtils.renderIntoDocument(<TodoApp />);
@@ -24,6 +49,7 @@ describe('TodoApp', () => {
     //Expect CreatedAt to be a number
     expect(todoApp.state.todos[0].createdAt).toBeA('number');
   });
+
 
   it('should toggle completed item when handleToggle called', () => {
     var todoData = {
@@ -74,5 +100,5 @@ describe('TodoApp', () => {
     expect(todoApp.state.todos[0].completedAt).toNotExist();
 
   });
-
+*/
 });
