@@ -48,7 +48,7 @@ describe('TodoList', () => {
       </Provider>
     );
     //var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos} />);
-    var todoList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedTodoList[0]);
+    var todoList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedTodoList)[0];
     var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, ConnectedTodo);
 
     expect(todosComponents.length).toBe(todos.length);

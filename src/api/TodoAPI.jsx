@@ -30,7 +30,25 @@ module.exports = {
     return Array.isArray(todos) ? todos : [];
   },
 
+  setShowCompleted: function (showCompleted) {
+
+      localStorage.setItem('showCompleted', showCompleted);
+
+  },
+
+  getShowCompleted: function () {
+
+    //var get = localStorage.getItem('showCompleted') == 'true' ? true : false;
+    //console.log("Fetching showCompleted from localStorage. Value:", get);
+    return localStorage.getItem('showCompleted') == 'true' ? true : false;
+
+    //return get;
+      //return localStorage.getItem('showCompleted');
+  },
+
   filterTodos: function (todos, showCompleted, searchText) {
+
+    console.log("Filtered todos - showCompleted:", showCompleted);
 
     var filteredTodos = todos;
 

@@ -5,9 +5,14 @@ import TodoList from './TodoList.jsx';
 
 // var Nav = require('./Nav.jsx')
 
-var AddTodo = require('./AddTodo.jsx');
-var TodoSearch = require('./TodoSearch.jsx');
-var TodoAPI = require('../api/TodoAPI.jsx');
+//var AddTodo = require('./AddTodo.jsx');
+import AddTodo from './AddTodo.jsx';
+
+//var TodoSearch = require('./TodoSearch.jsx');
+import TodoSearch from './TodoSearch.jsx';
+
+
+//var TodoAPI = require('../api/TodoAPI.jsx');
 
 var uuid = require('node-uuid');
 var moment = require('moment');
@@ -15,6 +20,7 @@ var moment = require('moment');
 // Use createClass as it is the top component to maintain state
 var TodoApp = React.createClass({
 
+  /* State Handled in Redux store
   getInitialState: function(){
     return {
       showCompleted: false,
@@ -36,16 +42,19 @@ var TodoApp = React.createClass({
           text: 'eat milo',
           completed: true
         }
-      ] */
+      ] //
       //Get the data from the API call
       todos: TodoAPI.getTodos()
     };
   },
-
+  */
+  /* Handled by Redux
   componentDidUpdate: function(){
     TodoAPI.setTodos(this.state.todos);
   },
+  */
 
+  /* Handled with Actions
   handleAddTodo: function(text) {
     //alert('New to do' + text);
 
@@ -61,6 +70,7 @@ var TodoApp = React.createClass({
       ]
     });
   },
+  */
   /*
   // refactored to use Redux dispatch direct from todo
   handleToggle: function(id){
@@ -76,6 +86,7 @@ var TodoApp = React.createClass({
     this.setState({todos: updatedTodos});
   },
   */
+  /* Handled by Redux
   handleSearch: function(showCompleted, searchText) {
     this.setState({
       showCompleted: showCompleted,
@@ -85,11 +96,11 @@ var TodoApp = React.createClass({
 
 
   },
-
+  */
   render: function(){
 
-    var {todos, showCompleted, searchText} = this.state;
-    var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+    //var {todos, showCompleted, searchText} = this.state;
+    //var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
     /* Refactor for react-redux
     return (
@@ -107,6 +118,7 @@ var TodoApp = React.createClass({
       </div>
     );
     */
+    /*
     return (
       <div>
         <h1 className="page-title">Todo App</h1>
@@ -116,6 +128,22 @@ var TodoApp = React.createClass({
               <TodoSearch onSearch={this.handleSearch} />
               <TodoList/>
               <AddTodo onAddTodo={this.handleAddTodo} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+    */
+    //Removed methods passed down to components
+    return (
+      <div>
+        <h1 className="page-title">Todo App</h1>
+        <div className="row">
+          <div className="column small-centered small-11 medium-6 large-5">
+            <div className="container">
+              <TodoSearch />
+              <TodoList/>
+              <AddTodo />
             </div>
           </div>
         </div>

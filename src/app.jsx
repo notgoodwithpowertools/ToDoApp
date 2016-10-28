@@ -21,29 +21,33 @@ var TodoApp = require('./components/TodoApp.jsx');
 
 
 var actions = require('./actions/actions.jsx');
+
+var TodoAPI = require('./api/TodoAPI.jsx');
+
+
 var store = require('./store/configureStore.jsx').configure();
 
+/*
 var ObjOne = {
   name: 'Andrew',
   location: 'Melbourne'
 };
 var ObjTwo = {
-  age: 49,
-  ...ObjOne
+  //age: 49,
+  ...ObjOne,
+  age: 49
 };
 console.log("Object Two:", ObjTwo);
 
 // Destructuring
 var {name} = ObjOne;
 console.log("Destructured name:", name);
+*/
+
 /*
 var {name2} = ObjTwo;
 console.log("Destructured Object 2 name:", name2);
 */
-
-
-
-var message = 'Boilerplate';
 
 /*
 ReactDOM.render(
@@ -54,21 +58,48 @@ ReactDOM.render(
 );
 */
 
+var initialShowCompleted = TodoAPI.getShowCompleted();
+console.log("initialShowCompleted:", initialShowCompleted);
 
 
 store.subscribe(() => {
-  console.log('New state', store.getState());
+  var state = store.getState();
+  //console.log('New state', store.getState());
+  console.log('New state', state);
+  TodoAPI.setTodos(state.todos);
+  TodoAPI.setShowCompleted(state.showCompleted);
 });
 
+
+//Add items to the store from local storage
+
+var initialTodos = TodoAPI.getTodos();
+console.log("Adding initial todos...");
+store.dispatch(actions.addTodos(initialTodos));
+console.log("Setting initial show completed state zzz...", initialShowCompleted);
+store.dispatch(actions.setShowCompleted(initialShowCompleted));
+
+
+/*
+var initialShowCompleted = TodoAPI.getShowCompleted();
+console.log("initialShowCompleted:", initialShowCompleted);
+*/
+//store.dispatch(actions.setShowCompleted(initialShowCompleted));
+
+
+
+/*
 console.log('++++++++++++++++');
 store.dispatch(actions.addTodo('walk the rabbits'));
-
-
+*/
+/*
 console.log('****************');
 store.dispatch(actions.setSearchText('rabbits'));
+*/
+/*
 console.log('================');
 store.dispatch(actions.toggleShowCompleted());
-
+*/
 
 /*
 ReactDOM.render(

@@ -9,6 +9,8 @@ export var configure = (initialState={}) => {
     todos: todosReducer
   });
 
+  //console.log("initialState:", initialState);
+
   var store = redux.createStore(reducers, initialState, redux.compose(
     //redux.applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
