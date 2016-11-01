@@ -44,6 +44,8 @@ describe('Reducers', () => {
       expect(res.length).toEqual(1);
       expect(res[0]).toEqual(action.todo);
     });
+    // Update for Firebase changes
+    /*
     it('should toggle Todo', () => {
 
       var todos = [{
@@ -66,6 +68,36 @@ describe('Reducers', () => {
       expect(res[0].completed).toEqual(false);
       expect(res[0].completedAt).toEqual(undefined);
     });
+    */
+    it('should update Todo', () => {
+
+      var todos = [{
+
+        id: 1,
+        text: 'walk the rabbit',
+        completed: true,
+        createdAt: 123,
+        completedAt: 125
+      }];
+      var updates = {
+        completed: false,
+        completedAt: null
+      };
+
+      var action = {
+        type: 'UPDATE_TODO',
+        id: todos[0].id,
+        updates: updates
+      };
+
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res.length).toEqual(1);
+      expect(res[0].completed).toEqual(updates.completed);
+      expect(res[0].completedAt).toEqual(updates.completedAt);
+      expect(res[0].text).toEqual(todos[0].text);
+    });
+
 
     it('should add existing todos', () => {
 

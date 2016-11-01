@@ -66,16 +66,25 @@ export var todosReducer = (state = [], action) => {
       ...action.todos
     ];
 
-    case 'TOGGLE_TODO':
-
-    console.log("Toggling Todo...");
+    //case 'TOGGLE_TODO':
+    case 'UPDATE_TODO':
+    //console.log("Toggling Todo...");
+    console.log("Updating Todo...");
     return state.map((todo) => {
       if (todo.id === action.id) {
+        // Now calculated in action
+        /*
         var completedStatus = !todo.completed;
         return {
           ...todo,
           completed: completedStatus,
           completedAt: completedStatus ? moment().unix() : undefined
+        };
+        */
+        return {
+          ...todo,
+          // Second spread operator overides first
+          ...action.updates
         };
       } else {
         return todo;
