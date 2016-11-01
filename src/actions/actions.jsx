@@ -1,3 +1,6 @@
+import firebase, {firebaseRef} from '../api/firebase/index.js';
+import moment from 'moment';
+
 export var setSearchText = (searchText) => {
   return {
     type: 'SET_SEARCH_TEXT',
@@ -5,10 +8,10 @@ export var setSearchText = (searchText) => {
   };
 };
 
-export var addTodo = (text) => {
+export var addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
-    text: text
+    todo: todo
   }
 };
 
@@ -17,6 +20,30 @@ export var addTodos = (todos) => {
     type: 'ADD_TODOS',
     todos: todos
   }
+};
+
+// asynch actions
+export var startAddTodo = (text) => {
+  return (dispatch, getState) => {
+    var todo = {
+      //id: uuid(), generated in the db call
+      text: text,
+      completed: false,
+      createdAt: moment().unix(),
+      completedAt: null
+    };
+    console.log("todo:", todo);
+    var todoRef = firebaseRef.child('todos').push(todo);
+
+    return todoRef.then( () => {
+      console.log("todoRef.key:", todoRef.key);
+      dispatch(addTodo({
+        ...todo,
+        id: todoRef.key
+      }));
+    });
+
+  };
 };
 
 

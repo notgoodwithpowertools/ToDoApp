@@ -48,13 +48,16 @@ export var todosReducer = (state = [], action) => {
     console.log("Adding Todo...");
     return [
       ...state,
+      //moved to generate in the action
+      /*
       {
         id: uuid(),
         text: action.text,
         completed: false,
         createdAt: moment().unix(),
         completedAt: undefined
-      }
+      }*/
+      action.todo
     ];
 
     case 'ADD_TODOS':

@@ -11,6 +11,8 @@ $(document).foundation();
 //App CSS
 require('style!css!sass!./styles/app.scss');
 
+//Import Firebase
+//import './../playground/firebase/index.js';
 
 //Test experimental JS
 
@@ -19,11 +21,9 @@ var Routes = require('./routes');
 //var Main = require('./components/Main.jsx');
 var TodoApp = require('./components/TodoApp.jsx');
 
-
 var actions = require('./actions/actions.jsx');
 
 var TodoAPI = require('./api/TodoAPI.jsx');
-
 
 var store = require('./store/configureStore.jsx').configure();
 
