@@ -55,3 +55,23 @@ hello('Andrew');
 var helloArrow = (name, lastname) => "Hello Arrow..." + name + " " + lastname;
 
 console.log("Greeting ..." + helloArrow('andrew', 'assauw'));
+
+var todos = {
+  abc: {text: 'text'},
+  def: {text: 'asdf'}
+};
+
+parsedTodos = [];
+c//onsole.log('Object.keys(todos)', Object.keys(todos));
+Object.keys(todos).forEach( (todoId) => {
+  //greet(...person);
+  console.log('TODOID:', todoId);
+  parsedTodos.push({
+    id: todoId, text: 'text', gender: 'male',
+    ...todos[todoId]
+  });
+  console.log("todos[todoid]:", todos[todoId]);
+  console.log('todoid:', todoId + " parse: " + parsedTodos[0]);
+});
+
+console.log('Parsed todos:', parsedTodos);

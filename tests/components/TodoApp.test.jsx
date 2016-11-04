@@ -6,11 +6,11 @@ var TestUtils = require('react-addons-test-utils');
 var {Provider} = require('react-redux');
 
 var configureStore = require('../../src/store/configureStore.jsx');
+//Compnonents
+var TodoApp = require('../../src/components/TodoApp.jsx');
+
 //var TodoList = require('../../src/components/TodoList.jsx');
 import TodoList from '../../src/components/TodoList.jsx'
-
-//Compnenents
-var TodoApp = require('../../src/components/TodoApp.jsx');
 
 describe('TodoApp', () => {
   it('should exist', () => {

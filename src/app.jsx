@@ -66,16 +66,16 @@ store.subscribe(() => {
   var state = store.getState();
   //console.log('New state', store.getState());
   console.log('New state', state);
-  TodoAPI.setTodos(state.todos);
+  //TodoAPI.setTodos(state.todos);
   TodoAPI.setShowCompleted(state.showCompleted);
 });
 
-
+store.dispatch(actions.startAddTodos());
 //Add items to the store from local storage
 
-var initialTodos = TodoAPI.getTodos();
-console.log("Adding initial todos...");
-store.dispatch(actions.addTodos(initialTodos));
+//var initialTodos = TodoAPI.getTodos();
+//console.log("Adding initial todos...");
+//store.dispatch(actions.addTodos(initialTodos));
 console.log("Setting initial show completed state zzz...", initialShowCompleted);
 store.dispatch(actions.setShowCompleted(initialShowCompleted));
 

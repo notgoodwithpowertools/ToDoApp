@@ -7,7 +7,7 @@ describe('TodoAPI', () => {
     expect(TodoAPI).toExist();
 
   });
-
+  /*
   describe('setTodos', () => {
 
     beforeEach( () => {
@@ -49,7 +49,7 @@ describe('TodoAPI', () => {
     });
 
   });
-
+  */
   describe('filterTodos', () => {
 
     var todos = [{

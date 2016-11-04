@@ -2,7 +2,7 @@ var $ = require('jquery');
 
 
 module.exports = {
-
+  /*
   setTodos: function (todos) {
     if (Array.isArray(todos)) {
       //console.log("Array found ...");
@@ -25,11 +25,11 @@ module.exports = {
       return [];
     }
     */
-
+/*
     //converted to ternary
     return Array.isArray(todos) ? todos : [];
   },
-
+  */
   setShowCompleted: function (showCompleted) {
 
       localStorage.setItem('showCompleted', showCompleted);
