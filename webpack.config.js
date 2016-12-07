@@ -28,7 +28,7 @@ module.exports = {
     path: __dirname,
     filename: './public/bundle.js'
   },
-  watch: true,
+  watch: false,
   resolve: {
     root: __dirname,
     modulesDirectories: [
