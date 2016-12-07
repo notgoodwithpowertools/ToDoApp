@@ -4,20 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "karma start",
+    "test": "NODE_ENV=test karma start",
     "dev": "webpack",
     "build-prod": "NODE_ENV=production webpack -p --progress --colors",
     "start": "node server.js",
-    "heroku": "npm run dev && start"
+    "heroku": "npm run build && start",
+    "build": "NODE_ENV=production webpack --progress --colors"
+
   },
   "author": "AA",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
-    "firebase": "^3.5.2"
-  },
-  "devDependencies": {
+    "firebase": "^3.5.2",
     "axios": "^0.12.0",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
@@ -29,13 +29,6 @@
     "expect": "^1.20.2",
     "foundation-sites": "^6.2.3",
     "jquery": "^2.2.1",
-    "karma": "^1.2.0",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-mocha": "^1.1.1",
-    "karma-mocha-reporter": "^2.1.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.8.0",
-    "mocha": "^3.0.2",
     "moment": "^2.15.1",
     "node-sass": "^3.8.0",
     "node-uuid": "^1.4.7",
@@ -51,5 +44,16 @@
     "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+
+    "karma": "^1.2.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-mocha": "^1.1.1",
+    "karma-mocha-reporter": "^2.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.8.0",
+    "mocha": "^3.0.2"
+
   }
 }
