@@ -7,7 +7,7 @@
     "test": "NODE_ENV=test karma start",
     "dev": "webpack",
     "build-prod": "NODE_ENV=production webpack -p --progress --colors",
-    "start": "npm run build && start",
+    "start": "npm run build && server",
     "server": "node server.js",
     "heroku": "npm run build && start",
     "build": "NODE_ENV=production webpack -p --progress --colors"
