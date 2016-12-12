@@ -32,7 +32,7 @@ describe('TodoApp', () => {
     expect(todoList.length).toEqual(1);
 
   });
-
+  
 
 
   // With Redux the function is not passed down. An action is called from the

@@ -85,6 +85,7 @@ describe('TodoList', () => {
     expect(TodoList).toExist();
   });
 
+  
   it('should render one Todo component for each todo item', () => {
     var todos = [{
       id: 1,
@@ -113,6 +114,7 @@ describe('TodoList', () => {
     expect(todosComponents.length).toBe(todos.length);
   });
 
+
   it('should render empty message if no todos', () => {
     var todos = [];
     var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
@@ -120,4 +122,6 @@ describe('TodoList', () => {
 
     expect($el.find('.container__message').length).toBe(1);
   });
+
+
 });
