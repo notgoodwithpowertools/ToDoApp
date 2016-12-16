@@ -1,4 +1,6 @@
-var React = require('react');
+//var React = require('react');
+import React from 'react';
+import * as Redux from 'react-redux';
 
 //var TodoList = require('./TodoList.jsx');
 import TodoList from './TodoList.jsx';
@@ -11,14 +13,24 @@ import AddTodo from './AddTodo.jsx';
 //var TodoSearch = require('./TodoSearch.jsx');
 import TodoSearch from './TodoSearch.jsx';
 
+import * as actions from '../actions/actions.jsx';
+
 
 //var TodoAPI = require('../api/TodoAPI.jsx');
 
-var uuid = require('node-uuid');
-var moment = require('moment');
+// No longer used
+//var uuid = require('node-uuid');
+// var moment = require('moment');
 
 // Use createClass as it is the top component to maintain state
-var TodoApp = React.createClass({
+export var TodoApp = React.createClass({
+
+  onLogout(e) {
+    var {dispatch} = this.props;
+    e.preventDefault();
+
+    dispatch(actions.startLogout());
+  },
 
   /* State Handled in Redux store
   getInitialState: function(){
@@ -97,8 +109,9 @@ var TodoApp = React.createClass({
 
   },
   */
-  render: function(){
-
+  //render: function(){
+  // as ES^ this looks like
+  render () {
     //var {todos, showCompleted, searchText} = this.state;
     //var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
@@ -137,6 +150,9 @@ var TodoApp = React.createClass({
     //Removed methods passed down to components
     return (
       <div>
+        <div className="page-actions">
+          <a href="#" onClick={this.onLogout}>Logout</a>
+        </div>
         <h1 className="page-title">Todo App</h1>
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
@@ -171,4 +187,5 @@ var Main = (props) => {
   )
 };
 */
-module.exports = TodoApp;
+//module.exports = TodoApp;
+export default Redux.connect()(TodoApp);

@@ -2,6 +2,23 @@
 var uuid = require('node-uuid');
 var moment = require('moment');
 
+export var authReducer = (state = '', action) => {
+
+  switch (action.type) {
+    case 'LOGIN':
+      console.log("Logging in user...");
+      return {
+        uid: action.uid
+      }
+    case 'LOGOUT':
+      console.log("Logging out user...");
+      return {};
+    default:
+      return state;
+  }
+
+};
+
 export var searchTextReducer = (state ='', action) => {
 
   switch (action.type) {

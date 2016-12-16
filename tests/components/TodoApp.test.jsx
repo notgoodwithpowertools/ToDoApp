@@ -7,7 +7,9 @@ var {Provider} = require('react-redux');
 
 var configureStore = require('../../src/store/configureStore.jsx');
 //Compnonents
-var TodoApp = require('../../src/components/TodoApp.jsx');
+//var TodoApp = require('../../src/components/TodoApp.jsx');
+//Get unconnected version for testing
+import {TodoApp} from '../../src/components/TodoApp.jsx';
 
 //var TodoList = require('../../src/components/TodoList.jsx');
 import TodoList from '../../src/components/TodoList.jsx'
@@ -32,7 +34,7 @@ describe('TodoApp', () => {
     expect(todoList.length).toEqual(1);
 
   });
-  
+
 
 
   // With Redux the function is not passed down. An action is called from the

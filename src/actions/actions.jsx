@@ -1,4 +1,4 @@
-import firebase, {firebaseRef} from '../api/firebase/index.js';
+import firebase, {firebaseRef, githubProvider} from '../api/firebase/index.js';
 import moment from 'moment';
 
 export var setSearchText = (searchText) => {
@@ -26,7 +26,11 @@ export var addTodos = (todos) => {
 export var startAddTodos = () => {
   console.log('startAddTodos...');
   return (dispatch, getState) => {
-    var todosRef = firebaseRef.child('todos');
+
+    //Updated Firebase schema bu uid
+    //var todosRef = firebaseRef.child('todos');
+    var uid = getState().auth.uid;
+    var todosRef = firebaseRef.child(`users/${uid}/todos`);
 
     return todosRef.once('value').then((snapshot) => {
       var todos = snapshot.val() || {};
@@ -59,7 +63,10 @@ export var startAddTodo = (text) => {
       completedAt: null
     };
     console.log("todo:", todo);
-    var todoRef = firebaseRef.child('todos').push(todo);
+    //var todoRef = firebaseRef.child('todos').push(todo);
+    //Updated Firebase schema bu uid
+    var uid = getState().auth.uid;
+    var todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
 
     return todoRef.then( () => {
       console.log("todoRef.key:", todoRef.key);
@@ -106,7 +113,12 @@ export var startToggleTodo = (id, completed) => {
   return (dispatch, getState) => {
     //var todoRef = firebaseRef.child('todos/' + id);
     // Using ES6 template strings
-    var todoRef = firebaseRef.child(`todos/${id}`);
+
+    //Updated Firebase schema bu uid
+    //var todoRef = firebaseRef.child(`todos/${id}`);
+    var uid = getState().auth.uid;
+    var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+
     var updates = {
       completed: completed,
       completedAt: completed ? moment().unix() : null
@@ -115,5 +127,37 @@ export var startToggleTodo = (id, completed) => {
       dispatch(updateTodo(id, updates));
     });
 
+  };
+};
+
+export var login = (uid) => {
+  return {
+    type: 'LOGIN',
+    uid: uid
+  };
+};
+
+export var logout = () => {
+  return {
+    type: 'LOGOUT'
+  };
+};
+
+
+export var startLogin = () => {
+  return (dispatch, getState) => {
+    firebase.auth().signInWithPopup(githubProvider).then((result) => {
+      console.log("Auth worked...", result);
+    }, (error) => {
+      console.log("Unable to auth", error);
+    });
+  };
+};
+
+export var startLogout = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signOut().then( () => {
+      console.log("Logged out...");
+    });
   };
 };

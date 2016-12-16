@@ -2,7 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var {Provider} = require('react-redux');
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
+//var {Route, Router, IndexRoute, hashHistory} = require('react-router');
+//Moved to router/index/js
+var {hashHistory} = require('react-router');
 
 //Load foundation
 require('style!css!foundation-sites/dist/foundation.min.css');
@@ -17,15 +19,38 @@ require('style!css!sass!./styles/app.scss');
 //Test experimental JS
 
 //Import Router
-var Routes = require('./routes');
+import router from './router/index.jsx'
+//var Routes = require('./routes');
 //var Main = require('./components/Main.jsx');
-var TodoApp = require('./components/TodoApp.jsx');
+//var TodoApp = require('./components/TodoApp.jsx');
 
 var actions = require('./actions/actions.jsx');
 
 var TodoAPI = require('./api/TodoAPI.jsx');
 
 var store = require('./store/configureStore.jsx').configure();
+
+//Moved to router/index.js
+//import Login from './components/Login.jsx';
+
+//Moved to router/index.js
+//import TodoApp from './components/TodoApp.jsx';
+
+//Use Firebase to control user page redirection depending on login state
+import firebase from './api/firebase/index.js';
+
+firebase.auth().onAuthStateChanged( (user) => {
+  if (user) {
+    store.dispatch(actions.login(user.uid));
+    store.dispatch(actions.startAddTodos());
+    hashHistory.push('/todos');
+  } else {
+    store.dispatch(actions.logout());
+    hashHistory.push('/');
+  }
+});
+
+
 
 /*
 var ObjOne = {
@@ -70,7 +95,7 @@ store.subscribe(() => {
   TodoAPI.setShowCompleted(state.showCompleted);
 });
 
-store.dispatch(actions.startAddTodos());
+//store.dispatch(actions.startAddTodos());
 //Add items to the store from local storage
 
 //var initialTodos = TodoAPI.getTodos();
@@ -107,10 +132,16 @@ ReactDOM.render(
   document.getElementById('app')
 );
 */
+
+//Moved routing middleware to src/routes/index.js
+
+
 // refactor using Provider - all children can access store
 ReactDOM.render(
   <Provider store={store}>
-    <TodoApp />
+
+    {router}
+
   </Provider>,
 
   document.getElementById('app')
