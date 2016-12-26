@@ -83,6 +83,9 @@ export var todosReducer = (state = [], action) => {
       ...action.todos
     ];
 
+    case 'LOGOUT' :
+      return [];
+
     //case 'TOGGLE_TODO':
     case 'UPDATE_TODO':
     //console.log("Toggling Todo...");

@@ -122,6 +122,27 @@ describe('Reducers', () => {
       //expect(res[0].completedAt).toEqual(undefined);
     });
 
+    it('should wipe todos on logout', () => {
+
+      var todos = [{
+
+        id: 111,
+        text: 'walk the rabbit',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 33000
+      }];
+
+      var action = {
+        type: 'LOGOUT'
+      };
+
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res.length).toEqual(0);
+      //expect(res[0].completedAt).toEqual(undefined);
+    });
+
   });
 
   describe('authReducer', () => {
